@@ -1,8 +1,10 @@
 <template>
-    <div class="demo0414">
+    <div class="demo0414" style="padding:20px;">
       <button @click="addData">添加</button>
+      <textarea v-model="sendVal" name="" id="" cols="30" rows="10"></textarea>
+
       <div class="panal" v-show="visible2">
-        <su-form @ceshi="closePanal"></su-form>
+        <su-form ref="childValue" @ceshi="closePanal" :sendData="nihao"></su-form>
       </div>
     </div>
 </template>
@@ -16,15 +18,32 @@
       },
       data() {
         return {
-          visible2: false
+          visible2: false,
+          sendVal: "",
+          nihao: {
+            name: "suzhengtagn",
+            love: "12",
+            age: "2",
+            sex: "男"
+          }
         }
       },
       methods:{
         addData() {
           this.visible2 = true
         },
-        closePanal(){
-          this.visible2 = false
+        // closePanal(){
+        //   debugger;
+        //   this.visible2 = false;
+        //   let aa = this.$refs.childValue.sendData;
+        //   let bb="";
+        //   for(let item in aa){
+        //     bb += aa[item];
+        //   }
+        //   this.sendVal = bb;
+        // }
+        closePanal(data){
+          console.log(data)
         }
       }
     }

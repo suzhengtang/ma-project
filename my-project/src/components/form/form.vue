@@ -50,12 +50,16 @@
             }
           }
       },
+      props: {
+        type: Object,
+        default: {}
+      },
       methods: {
         submitSend() {
           console.log(this.sendData);
         },
         closeModel() {
-          this.$emit("ceshi")
+          this.$emit("ceshi", this.sendData)
         }
       }
     }
