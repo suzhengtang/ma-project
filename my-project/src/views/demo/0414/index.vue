@@ -2,9 +2,27 @@
     <div class="demo0414" style="padding:20px;">
       <button @click="addData">添加</button>
       <textarea v-model="sendVal" name="" id="" cols="30" rows="10"></textarea>
+      <ul>
+        <li>
+          <label for="">姓名：</label>
+          <input type="text" v-model="disAbled.name" disabled>
+        </li>
+        <li>
+          <label for="">年龄：</label>
+          <input type="text" v-model="disAbled.age" disabled>
+        </li>
+        <li>
+          <label for="">性别：</label>
+          <input type="text" v-model="disAbled.sex" disabled>
+        </li>
+        <li>
+          <label for="">爱好：</label>
+          <input type="text" v-model="disAbled.love" disabled>
+        </li>
+      </ul>
 
       <div class="panal" v-show="visible2">
-        <su-form ref="childValue" @ceshi="closePanal" :sendData="nihao"></su-form>
+        <su-form ref="childValue" @ceshi="closePanal" @sendData="sendDataFun" :send-data="sendData"></su-form>
       </div>
     </div>
 </template>
@@ -20,11 +38,18 @@
         return {
           visible2: false,
           sendVal: "",
-          nihao: {
-            name: "suzhengtagn",
-            love: "12",
-            age: "2",
-            sex: "男"
+          disName: "",
+          disAbled: {
+            name: "",
+            love: "",
+            age: "",
+            sex: ""
+          },
+          sendData: {
+            name: "测试",
+            love: "唱歌",
+            age: "18岁",
+            sex: "女"
           }
         }
       },
@@ -32,18 +57,14 @@
         addData() {
           this.visible2 = true
         },
-        // closePanal(){
-        //   debugger;
-        //   this.visible2 = false;
-        //   let aa = this.$refs.childValue.sendData;
-        //   let bb="";
-        //   for(let item in aa){
-        //     bb += aa[item];
-        //   }
-        //   this.sendVal = bb;
-        // }
         closePanal(data){
-          console.log(data)
+          this.sendData = {};
+          this.visible2 = false;
+        },
+        sendDataFun(data) {
+          this.disAbled = data;
+          this.sendData = {};
+          this.visible2 = false;
         }
       }
     }

@@ -18,7 +18,7 @@
           <li>
             <label for="">{{formLove}}</label>
             <select name="" id="" v-model="sendData.love">
-              <option v-for="(item,index) in selectLove" :value=index>{{item}}</option>
+              <option v-for="(item,index) in selectLove" :value=item>{{item}}</option>
             </select>
           </li>
           <li class="btn">
@@ -42,24 +42,15 @@
             formHolder: "请输入",
             formSelect: "请选择你的爱好",
             selectLove: ["篮球","台球","唱歌","看书"],
-            sendData: {
-              name: "",
-              love: "1",
-              age: "",
-              sex: "男"
-            }
           }
       },
-      props: {
-        type: Object,
-        default: {}
-      },
+      props: ['sendData'],
       methods: {
         submitSend() {
-          console.log(this.sendData);
+          this.$emit("sendData", this.sendData)
         },
         closeModel() {
-          this.$emit("ceshi", this.sendData)
+          this.$emit("ceshi")
         }
       }
     }
