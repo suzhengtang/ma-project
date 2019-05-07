@@ -1,6 +1,9 @@
 <template>
   <div class="demo0425">
-    <Tree :data="data2" show-checkbox @on-check-change="getCheckbox"></Tree>
+    <Tree ref="treeRef" :data="data2" show-checkbox @on-check-change="getCheckbox"></Tree>
+    <input type="text" v-model="demoVal">
+    <p>{{demoWatch}}</p>
+    <button @click="dataChange">点击让树的数据发生变化</button>
   </div>
 </template>
 
@@ -9,36 +12,11 @@
     name: "index",
     data() {
       return {
-        data2: [
-          {
-            title: 'parent 1',
-            expand: true,
-            children: [
-              {
-                title: 'parent 1-1',
-                children: [
-                  {
-                    title: 'leaf 1-1-1'
-                  },
-                  {
-                    title: 'leaf 1-1-2'
-                  }
-                ]
-              },
-              {
-                title: 'parent 1-2',
-                children: [
-                  {
-                    title: 'leaf 1-2-1'
-                  },
-                  {
-                    title: 'leaf 1-2-2'
-                  }
-                ]
-              }
-            ]
-          }
-        ],
+        demoVal: "",
+        demoWatch: "",
+        data2: [],
+        selectData: ["专业管理", "问题任务"],
+        testData: ["测试试题", "专业设置","添加"],
         message: [
           { 'Id': '2',
             'Name': '管理',
@@ -111,25 +89,40 @@
       }
     },
     created() {
-      this.data2 = this.getData(this.message);
+      this.data2 = this.getData(this.message, this.selectData);
     },
     methods: {
       getCheckbox(data) {
-        console.log(data.map(m => m.title))
+        this.selectData = data.map(m => m.title);
+        console.log(this.selectData);
       },
-      getData(arr) {
+      getData(arr, selArr) {
         var rst = [];
         for (var i = 0; i < arr.length; i++) {
           if(arr[i]){
             rst[i] = {};
             rst[i].title = arr[i].Name;
-            rst[i].expand = arr[i].id == 0 ? true : false;
-            rst[i].checked = arr[i].Name == "专业管理" ? true : false;
-            rst[i]["children"] = arr[i]["children"] ? this.getData(arr[i]["children"]) : [];
+            rst[i].expand = true;
+            // rst[i].checked = arr[i].Name == "专业管理" ? true : false;
+            for(let j=0; j<selArr.length; j++){
+              if(arr[i].Name == selArr[j]){
+                rst[i].checked = true;
+                rst[i].expand = true
+              }
+            }
+            rst[i]["children"] = arr[i]["children"] ? this.getData(arr[i]["children"], selArr) : [];
           }
         }
         return rst;
       },
+      dataChange(){
+        this.data2 = this.getData(this.message, this.testData);
+      }
+    },
+    watch: {
+      demoVal(now, old){
+        this.demoWatch = now;
+      }
     }
   }
 </script>
