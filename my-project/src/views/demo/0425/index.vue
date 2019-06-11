@@ -5,7 +5,7 @@
     <p>{{demoWatch}}</p>
     <button @click="dataChange">点击让树的数据发生变化</button>
     <br>
-    <textarea v-model="excelData" name="" id="" cols="60" rows="10" placeholder="请导入数据"></textarea>
+    <textarea v-model="excelData" name="" id="" cols="80" rows="30" placeholder="请导入数据"></textarea>
   </div>
 </template>
 
@@ -93,7 +93,8 @@
     },
     created() {
       this.data2 = this.getData(this.message, this.selectData);
-      this.excelData = this.formatJson(this.message)
+      this.excelData = this.formatJson(this.message);
+      // this.excelData = this.message;
     },
     methods: {
       getCheckbox(data) {
