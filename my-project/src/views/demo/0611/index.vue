@@ -25,10 +25,12 @@
           }
       },
       created() {
+          this.test();
         this.test1();
+        this.test2();
       },
       methods: {
-          test() {
+          test() { //方法一
             let str = "a=1&b=2&c=3";
             let obj = {};
             let strArr = str.split("&");
@@ -37,6 +39,15 @@
             }
             console.log(obj);
           },
+        test2() {  //方法二
+          let str = "a=1&b=2&c=3";
+          let obj = {};
+          let strArr = str.split("&");
+          for(let i=0; i<strArr.length; i++){
+            obj[strArr[i].split("=")[0]] = ~~strArr[i].split("=")[1]
+          }
+          console.log(obj);
+        },
         test1() {
             let obj = {a: 1, b: 2, c: 3};
             let str = "";
