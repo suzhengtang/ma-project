@@ -18,7 +18,7 @@
         demoVal: "",
         demoWatch: "",
         data2: [],
-        excelData: "",
+        excelData: [],
         selectData: ["专业管理", "问题任务"],
         testData: ["测试试题", "专业设置","添加"],
         message: []
@@ -26,9 +26,6 @@
     },
     created() {
       this.defaultData();
-      this.data2 = this.getData(this.message, this.selectData);
-      this.excelData = this.formatJson(this.message);
-      this.excelData = this.message;
     },
     methods: {
       getCheckbox(data) {
@@ -120,10 +117,14 @@
       // },
       defaultData(){
         let url = "/api/test/appData";
+        let $this = this;
         Axios.get(url).then(res => {
           let sendData = res.data.data;
           if(sendData.status == 1){
-            this.message = sendData.dataList;
+            // this.message = sendData.dataList;
+            $this.data2 = $this.getData(sendData.dataList, $this.selectData)
+            $this.excelData = $this.formatJson(sendData.dataList);
+            $this.message = sendData.dataList
           }
         }).catch(err => {
           console.log(err);
