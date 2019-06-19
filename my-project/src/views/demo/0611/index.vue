@@ -9,6 +9,30 @@
       <p>{{content2}}</p>
       <br>
       查看结果需要打开控制台
+      <div class="ceshi">
+          <div class="fl-left">
+              <label for="">姓名：</label>
+              <input type="text" placeholder="请输入你的姓名">
+          </div>
+          <div class="fl-left">
+              <label for="">时间：</label>
+              <input type="text" placeholder="请输入开始时间">
+              <label for="">to</label>
+              <input type="text" placeholder="请输入结束时间">
+          </div>
+          <div class="fl-left">
+              <label for="">时间：</label>
+              <input type="text" placeholder="请输入开始时间">
+              <label for="">to</label>
+              <input type="text" placeholder="请输入结束时间">
+          </div>
+          <div class="fl-left">
+              <label for="">时间：</label>
+              <input type="text" placeholder="请输入开始时间">
+              <label for="">to</label>
+              <input type="text" placeholder="请输入结束时间">
+          </div>
+      </div>
     </div>
 </template>
 
@@ -25,7 +49,7 @@
           }
       },
       created() {
-          this.test();
+        this.test();
         this.test1();
         this.test2();
       },
@@ -64,5 +88,22 @@
 <style lang="less" scoped>
 .demo0611{
   padding: 20px;
+  .ceshi{
+      width: 100%;
+      height: 400px;
+      border: 1px dashed red;
+      margin-top: 50px;
+      padding: 10px;
+      .fl-left{
+          width: 50%;
+          float: left;
+          margin-top: 10px;
+      }
+      input{
+        height: 34px;
+        vertical-align: middle
+        // 让文字和input框对其使用以上两种样式即可；
+      }
+  }
 }
 </style>
