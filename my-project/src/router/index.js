@@ -5,6 +5,7 @@ import demo0424 from '@/views/demo/0424/index'
 import demo0425 from '@/views/demo/0425/index'
 import demo0516 from '@/views/demo/0516/index'
 import demo0611 from '../views/demo/0611/index'
+import demo0625 from '../views/demo/0625/index'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/demo0611',
       name: 'index',
       component: demo0611
+    },
+    {
+        path: '/demo0625',
+        name: 'index',
+        component: demo0625
     }
   ]
 })
